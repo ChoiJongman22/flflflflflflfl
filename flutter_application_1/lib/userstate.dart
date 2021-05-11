@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 class UserState with ChangeNotifier {
   LocalStorage storage = new LocalStorage('usertoken');
   Future<bool> loginNow(String user, String pw) async {
-    String url = 'http://0.0.0.0/api/login/';
+    String url = "http://127.0.0.1:8000/api/login/";
     try {
       http.Response response = await http.post(Uri.parse(url),
           headers: {
@@ -29,7 +29,7 @@ class UserState with ChangeNotifier {
   }
 
   Future<bool> registerNow(String user, String pw) async {
-    String url = 'http://0.0.0.0/api/register/';
+    String url = " http://127.0.0.1:8000/api/register/";
     try {
       http.Response response = await http.post(Uri.parse(url),
           headers: {

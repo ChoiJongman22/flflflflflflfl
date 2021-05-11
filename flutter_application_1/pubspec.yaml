@@ -23,9 +23,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http:
+  http: ^0.13.3
   provider:
   localstorage:
+  hotreloader: ^3.0.1
   
 
 

@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
         routes: {
           LoginScreens.routeName: (ctx) => LoginScreens(),
           RegisterScreens.routeName: (ctx) => RegisterScreens(),
+          HomeScreens.routeName: (ctx) => HomeScreens(),
         },
       ),
     );
