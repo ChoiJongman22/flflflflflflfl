@@ -1,15 +1,18 @@
-from .serializers import *
+  
+from rest_framework import serializers
 from .models import *
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import TokenAuthentication
-# Create your views here.
+from django.contrib.auth import get_user_model
+from rest_framework.authtoken.models import Token
 
-class RegisterView(APIView):
-    def post(self,request):
-        serializers=UserSerializer(data=request)
-        if serializers.is_valid():
-            serializers.save()
-            return Response({"error":False})
-        return Response({"error":True})
+User = get_user_model()
+class Userserializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'password',
+                  'first_name', 'last_name', 'email',)
+        extra_kwargs = {'password': {"write_only": True, 'required': True}}
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        Token.objects.create(user=user)
+        return user
